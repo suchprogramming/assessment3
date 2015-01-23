@@ -1,10 +1,10 @@
 class Client
 
-  attr_reader(:client_name, :id)
+  attr_reader(:client_name, :client_id)
 
   define_method(:initialize) do |attributes|
     @client_name = attributes.fetch(:client_name)
-    @id = attributes[:id]
+    @client_id = attributes.fetch(:client_id)
   end
 
   define_singleton_method(:all) do
@@ -12,18 +12,18 @@ class Client
     clients = []
     returned_clients.each() do |client|
       client_name = client.fetch("client_name")
-      id = client.fetch("id").to_i()
-      clients.push(Client.new({:client_name => client_name, :id => id}))
+      client_id = client.fetch("client_id").to_i()
+      clients.push(Client.new({:client_name => client_name, :client_id => client_id}))
     end
     clients
   end
 
   define_method(:save) do
-    result = DB.exec("INSERT INTO clients (client_name) VALUES ('#{@client_name}') RETURNING id;")
-    @id = result.first().fetch("id").to_i()
+    DB.exec("INSERT INTO clients (client_name, client_id) VALUES ('#{@client_name}', #{@client_id});")
   end
 
   define_method(:==) do |compared_client|
-    self.client_name == compared_client.client_name() && self.id == compared_client.id()
+    self.client_name == compared_client.client_name() && self.client_id == compared_client.client_id()
   end
+
 end

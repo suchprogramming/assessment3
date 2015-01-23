@@ -9,14 +9,21 @@ describe(Client) do
 
   describe("#client_name") do
     it("returns the name of the client") do
-      test_client = Client.new({:client_name => "Becky", :client_id => nil})
+      test_client = Client.new({:client_name => "Becky", :client_id => 1})
       expect(test_client.client_name()).to(eq("Becky"))
+    end
+  end
+
+  describe("#client_id") do
+    it("returns the client ID") do
+      test_client = Client.new({:client_name => "Becky", :client_id => 1})
+      expect(test_client.client_id()).to(eq(1))
     end
   end
 
   describe("#save") do
     it("saves a client name to the clients array") do
-      test_client = Client.new({:client_name => "Becky", :id => nil })
+      test_client = Client.new({:client_name => "Becky", :client_id => 1 })
       test_client.save()
       expect(Client.all()).to(eq([test_client]))
     end
@@ -24,8 +31,8 @@ describe(Client) do
 
   describe("#==") do
     it("is the same client if it has the same client name and id") do
-      test_client = Client.new({:client_name => "Becky", :id => 1 })
-      test_client2= Client.new({:client_name => "Becky", :id => 1 })
+      test_client = Client.new({:client_name => "Becky", :client_id => 1 })
+      test_client2= Client.new({:client_name => "Becky", :client_id => 1 })
       expect(test_client).to(eq(test_client2))
     end
   end
