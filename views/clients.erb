@@ -6,19 +6,24 @@
   <label for="client_name">Client Name:</label>
   <input id="client_name" name="client_name" type="text">
 
-  <button type="submit">Add Client</button>
+  <button type='submit' class='btn btn-success'>Add Client</button>
 </form>
 
 <% if @stylist.clients().any?() %>
-<h3>Client List:</h3>
-
-<ul>
-  <% @stylist.clients().each() do |client| %>
-  <li><%= client.client_name() %></li>
-  <% end %>
-</ul>
+  <h3>Client List:</h3>
+<% @stylist.clients().each() do |client| %>
+  <table class='table table-bordered'>
+    <tr class='active'>
+      <th> Client Name</th>
+    </tr>
+    <tr>
+      <td> <%= client.client_name() %> </td>
+    </tr>
+  </table>
+<% end %>
+</table>
 <% else %>
 <p>No current clients.</p>
 <% end %>
 
-<a href="/">Return to Main Page</a>
+<a class="btn btn-info" href="/" role="button">Back</a>

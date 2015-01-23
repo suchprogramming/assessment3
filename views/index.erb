@@ -1,4 +1,4 @@
-<h1>Look Fancy</h1>
+<h1>Salon</h1>
 
 <p>Add Stylist:</p>
 
@@ -6,17 +6,17 @@
   <label for="stylist_name">Stylist Name:</label>
   <input id="stylist_name" name="stylist_name" type="text">
 
-  <button type="submit">Add Stylist</button>
+  <button type="submit" class="btn btn-success">Add Stylist</button>
 </form>
-
+</br>
 <% if @stylists.any?() %>
-<p>Click a stylist to view clients:</p>
-
-<ul>
+<p>Click a stylist below to view clients:</p>
+</br>
+<div class="list-group">
   <% @stylists.each do |stylist| %>
-  <li><a href="/stylists/<%= stylist.id() %>"><%= stylist.stylist_name() %></a></li>
+    <a href="/stylists/<%= stylist.id() %>" class="list-group-item"> <%= stylist.stylist_name() %> </a>
   <% end %>
-</ul>
+</div>
 <% else %>
 <p>Hire Stylists!</p>
 <% end %>
