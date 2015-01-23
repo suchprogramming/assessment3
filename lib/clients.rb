@@ -26,4 +26,10 @@ class Client
     self.client_name == compared_client.client_name() && self.client_id == compared_client.client_id()
   end
 
+  define_method(:update_client) do |attributes|
+    @client_name = attributes.fetch(:client_name)
+    @client_id = self.client_id()
+    DB.exec("UPDATE clients SET client_name = '#{@client_name}' WHERE id = #{@client_id};")
+  end
+
 end

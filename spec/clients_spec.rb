@@ -37,4 +37,13 @@ describe(Client) do
     end
   end
 
+  describe("#update_client") do
+    it("updates a selected client name in the database") do
+      test_client = Client.new({:client_name => "Becky", :client_id => 1})
+      test_client.save()
+      test_client.update_client(:client_name => "Rebecca")
+      expect(test_client.client_name()).to(eq("Rebecca"))
+    end
+  end
+
 end
