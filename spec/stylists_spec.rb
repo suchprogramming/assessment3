@@ -14,4 +14,20 @@ describe(Stylist) do
       expect(test_stylist.stylist_name()).to(eq("Becky"))
     end
   end
+
+  describe("#save") do
+    it("saves a stylist name to the stylist class array") do
+      test_stylist = Stylist.new({:stylist_name => "Becky", :stylist_id => nil})
+      test_stylist.save()
+      expect(Stylist.all()).to(eq([test_stylist]))
+    end
+  end
+
+  describe("#==") do
+    it("is the same stylist if it has the same stylist name") do
+      test_stylist = Stylist.new({:stylist_name => "Becky", :id => nil })
+      test_stylist2= Stylist.new({:stylist_name => "Becky", :id => nil })
+      expect(test_stylist).to(eq(test_stylist2))
+    end
+  end
 end
