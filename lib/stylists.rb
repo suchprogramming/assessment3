@@ -24,7 +24,7 @@ class Stylist
   end
 
   define_method(:==) do |compared_stylist|
-    self.stylist_name == compared_stylist.stylist_name()
+    self.stylist_name == compared_stylist.stylist_name() && self.id == compared_stylist.id()
   end
-  
+
 end
