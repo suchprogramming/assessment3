@@ -1,6 +1,6 @@
 source('https://rubygems.org')
 
-require('sinatra')
-require('sinatra-contrib')
-require('pg')
-require('pry')
+gem('sinatra')
+gem('sinatra-contrib')
+gem('pg')
+gem('pry')

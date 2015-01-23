@@ -1,6 +1,7 @@
 require('rspec')
 require('stylists')
 require('clients')
+require('pg')
 
 DB = PG.connect({:dbname => 'hair_salon_test'})
 
