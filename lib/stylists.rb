@@ -37,4 +37,15 @@ class Stylist
     self.stylist_name == compared_stylist.stylist_name() && self.id == compared_stylist.id()
   end
 
+  define_method(:clients) do
+    stylist_clients = []
+    clients = DB.exec("SELECT * FROM clients WHERE client_id = #{self.id()};")
+    clients.each() do |client|
+      client_name = client.fetch("client_name")
+      client_id = client.fetch("client_id").to_i()
+      stylist_clients.push(Client.new({:client_name => client_name, :client_id => client_id}))
+    end
+    stylist_clients
+  end
+
 end
