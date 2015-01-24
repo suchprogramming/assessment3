@@ -1,9 +1,10 @@
 class Client
 
-  attr_reader(:client_name, :client_id)
+  attr_reader(:client_name, :client_phone, :client_id)
 
   define_method(:initialize) do |attributes|
     @client_name = attributes.fetch(:client_name)
+    @client_phone = attributes.fetch(:client_phone)
     @client_id = attributes.fetch(:client_id)
   end
 
@@ -12,14 +13,15 @@ class Client
     clients = []
     returned_clients.each() do |client|
       client_name = client.fetch("client_name")
+      client_phone = client.fetch("client_phone")
       client_id = client.fetch("client_id").to_i()
-      clients.push(Client.new({:client_name => client_name, :client_id => client_id}))
+      clients.push(Client.new({:client_name => client_name, :client_phone => client_phone, :client_id => client_id}))
     end
     clients
   end
 
   define_method(:save) do
-    DB.exec("INSERT INTO clients (client_name, client_id) VALUES ('#{@client_name}', #{@client_id});")
+    DB.exec("INSERT INTO clients (client_name, client_phone, client_id) VALUES ('#{@client_name}', #{@client_phone}, #{@client_id});")
   end
 
   define_method(:==) do |compared_client|

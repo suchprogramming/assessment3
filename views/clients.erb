@@ -2,11 +2,11 @@
 
 <form action="/clients" method="post">
   <input id="client_id" name="client_id" type="hidden" value="<%= @stylist.id() %>">
-
   <label for="client_name">Client Name:</label>
   <input id="client_name" name="client_name" type="text">
-
-  <button type='submit' class='btn btn-success'>Add Client</button>
+  <label for="client_phone">Client Phone:</label>
+  <input id="client_phone" name="client_phone" type="text">
+  <button type='submit' class='btn btn-success'>Add Client Info</button>
 </form>
 
 <% if @stylist.clients().any?() %>
@@ -15,15 +15,15 @@
   <table class='table table-bordered'>
     <tr class='active'>
       <th> Client Name</th>
+      <th> Client Phone: </th>
     </tr>
     <tr>
       <td> <%= client.client_name() %> </td>
+      <td> <%= client.client_phone() %> </td>
     </tr>
   </table>
 <% end %>
-</table>
 <% else %>
-<p>No current clients.</p>
+  <p>No current clients.</p>
 <% end %>
-
-<a class="btn btn-info" href="/" role="button">Back</a>
+  <a class="btn btn-info" href="/" role="button">Back</a>

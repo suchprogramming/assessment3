@@ -4,7 +4,7 @@ class Stylist
 
   define_method(:initialize) do |attributes|
     @stylist_name = attributes.fetch(:stylist_name)
-    @id = attributes[:id]
+    @id = attributes.fetch(:id)
   end
 
   define_singleton_method(:all) do
@@ -33,6 +33,11 @@ class Stylist
     @id = result.first().fetch('id').to_i()
   end
 
+  define_method(:delete) do
+    DB.exec("DELETE FROM stylists WHERE id = #{self.id()};")
+    DB.exec("DELETE FROM clients WHERE client_id = #{self.id()};")
+  end
+
   define_method(:==) do |compared_stylist|
     self.stylist_name == compared_stylist.stylist_name() && self.id == compared_stylist.id()
   end
@@ -42,8 +47,9 @@ class Stylist
     clients = DB.exec("SELECT * FROM clients WHERE client_id = #{self.id()};")
     clients.each() do |client|
       client_name = client.fetch("client_name")
+      client_phone = client.fetch("client_phone")
       client_id = client.fetch("client_id").to_i()
-      stylist_clients.push(Client.new({:client_name => client_name, :client_id => client_id}))
+      stylist_clients.push(Client.new({:client_name => client_name, :client_phone => client_phone, :client_id => client_id}))
     end
     stylist_clients
   end
