@@ -53,9 +53,9 @@ describe(Stylist) do
     it("returns an array of clients for a given stylist") do
       test_stylist = Stylist.new({:stylist_name => "Katherine", :id => nil})
       test_stylist.save()
-      test_client = Client.new({:client_name => "Becky", :client_phone => 1234567890, :client_id => test_stylist.id()})
+      test_client = Client.new({:client_name => "Becky", :client_phone => 1234567890, :stylist_id => test_stylist.id()})
       test_client.save()
-      test_client2 = Client.new({:client_name => "Mary", :client_phone => 1234567890, :client_id => test_stylist.id()})
+      test_client2 = Client.new({:client_name => "Mary", :client_phone => 1234567890, :stylist_id => test_stylist.id()})
       test_client2.save()
       expect(test_stylist.clients()).to(eq([test_client, test_client2]))
     end
@@ -74,9 +74,9 @@ describe(Stylist) do
     it("deletes a stylist's clients from the database") do
       stylist = Stylist.new({:stylist_name => "Katherine", :id => nil})
       stylist.save()
-      client = Client.new({:client_name => "Becky", :client_phone => 1234567890, :client_id => stylist.id()})
+      client = Client.new({:client_name => "Becky", :client_phone => 1234567890, :stylist_id => stylist.id()})
       client.save()
-      client2 = Client.new({:client_name => "Mary", :client_phone => 1234567890, :client_id => stylist.id()})
+      client2 = Client.new({:client_name => "Mary", :client_phone => 1234567890, :stylist_id => stylist.id()})
       client2.save()
       stylist.delete()
       expect(Client.all()).to(eq([]))

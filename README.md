@@ -12,7 +12,7 @@ Table 1 = stylists
 Table 2 = clients
 
 Table 1 Columns = stylist_name
-Table 2 Columns = client_name, client_id, client_phone
+Table 2 Columns = client_name, stylist_id, client_phone
 ```
 
 ### Gems used

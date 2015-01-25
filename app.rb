@@ -15,10 +15,10 @@ end
 post("/clients") do
   client_name = params.fetch("client_name")
   client_phone = params.fetch("client_phone")
-  client_id = params.fetch("client_id").to_i()
-  client = Client.new({:client_name => client_name, :client_phone => client_phone, :client_id => client_id})
+  stylist_id = params.fetch("stylist_id").to_i()
+  client = Client.new({:client_name => client_name, :client_phone => client_phone, :stylist_id => stylist_id})
   client.save()
-  @stylist = Stylist.find(client_id)
+  @stylist = Stylist.find(stylist_id)
   erb(:clients)
 end
 
